@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="TARIS FOOD logo">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#c5161a"/>
+      <stop offset="1" stop-color="#a31215"/>
+    </linearGradient>
+  </defs>
+  <rect width="128" height="128" rx="24" fill="url(#g)"/>
+  <!-- Plate -->
+  <circle cx="64" cy="66" r="34" fill="#ffffff"/>
+  <circle cx="64" cy="66" r="22" fill="#ffe6e7"/>
+  <!-- Spoon -->
+  <path d="M96 28c6 0 11 5 11 11s-5 11-11 11c-3 0-6-1-8-3l-24 24-4-4 24-24c-2-2-3-5-3-8 0-6 5-11 11-11z" fill="#ffffff" opacity="0.9"/>
+  <!-- Fork -->
+  <path d="M28 28l8 8 4-4 6 6-4 4 8 8-6 6-8-8-24 24-4-4 24-24-8-8z" fill="#ffffff" opacity="0.9"/>
+  <!-- Spark highlight -->
+  <circle cx="92" cy="30" r="6" fill="#fff" opacity="0.25"/>
+</svg>

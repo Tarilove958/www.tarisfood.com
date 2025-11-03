@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Order • TARIS FOOD</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a href="index.html" class="logo">TARIS FOOD</a>
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+      <nav class="site-nav" data-nav>
+        <a href="index.html">Home</a>
+        <a href="menu.html">Menu</a>
+        <a href="testimonials.html">Testimonials</a>
+        <a href="about.html">About</a>
+        <a href="reservations.html">Reservations</a>
+        <a class="active" href="order.html">Order</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <h1>Your Order</h1>
+        <p>Review your cart and proceed to payment.</p>
+      </div>
+    </section>
+
+    <section class="section" id="order">
+      <div class="container">
+        <div class="card" style="overflow:auto">
+          <table id="cartTable" style="width:100%; border-collapse: collapse;">
+            <thead>
+              <tr>
+                <th style="text-align:left; padding:8px;">Item</th>
+                <th style="text-align:right; padding:8px;">Price (₦)</th>
+                <th style="text-align:center; padding:8px;">Qty</th>
+                <th style="text-align:right; padding:8px;">Subtotal (₦)</th>
+                <th style="padding:8px;">Action</th>
+              </tr>
+            </thead>
+            <tbody id="cartBody"></tbody>
+          </table>
+        </div>
+
+        <div class="cards-grid two" style="margin-top:1rem; align-items:start;">
+          <div class="card">
+            <h3>Order Summary</h3>
+            <p class="muted">Delivery fee is calculated at checkout.</p>
+            <p><strong>Items:</strong> <span id="cartItems">0</span></p>
+            <p><strong>Total:</strong> ₦<span id="cartTotal">0</span></p>
+            <div class="actions">
+              <button class="btn" id="clearCartBtn">Clear Cart</button>
+              <button class="btn primary" id="payNowBtn">Pay Now</button>
+            </div>
+            <p id="paymentStatus" class="muted" aria-live="polite"></p>
+          </div>
+
+          <div class="card">
+            <h3>Payment</h3>
+            <div class="field">
+              <label>Method</label>
+              <div class="filters">
+                <label><input type="radio" name="payMethod" value="card" checked /> Debit Card</label>
+                <label><input type="radio" name="payMethod" value="bank" /> Bank Transfer</label>
+              </div>
+            </div>
+
+            <div id="cardFields">
+              <div class="field">
+                <label for="cardName">Name on Card</label>
+                <input id="cardName" type="text" placeholder="Full name" />
+                <small class="error" data-error-for="cardName"></small>
+              </div>
+              
+              <div class="field">
+                <label for="cardNumber">Card Number</label>
+                <input id="cardNumber" inputmode="numeric" maxlength="19" placeholder="1234 5678 9012 3456" />
+                <small class="error" data-error-for="cardNumber"></small>
+              </div>
+
+              <div class="field" style="display:flex; gap:8px;">
+                <div style="flex:1;">
+                  <label for="cardExpiry">Expiry (MM/YY)</label>
+                  <input id="cardExpiry" inputmode="numeric" maxlength="5" placeholder="MM/YY" />
+                  <small class="error" data-error-for="cardExpiry"></small>
+                </div>
+
+                <div style="flex:1;">
+                  <label for="cardCvv">CVV</label>
+                  <input id="cardCvv" inputmode="numeric" maxlength="4" placeholder="123" />
+                  <small class="error" data-error-for="cardCvv"></small>
+                </div>
+              </div>
+              <p class="muted">Secured via SSL. We do not store card details.</p>
+            </div>
+
+            <div id="bankFields" style="display:none;">
+              <p><strong>Bank:</strong> TARIS FOOD</p>
+              <p><strong>Account No:</strong> 7015471331</p>
+              <p><strong>Bank Name:</strong> Moniepont</p>
+              <div class="field">
+
+                <label for="bankRef">Transfer Reference</label>
+                <input id="bankRef" type="text" placeholder="e.g., TF-12345 or Sender Name" />
+                <small class="error" data-error-for="bankRef"></small>
+              </div>
+
+              <p class="muted">After making your transfer, enter the reference and click Pay Now to confirm.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:1rem;">
+          <h3>Add a custom item</h3>
+          <div class="field">
+            <label for="customName">Item name</label>
+            <input id="customName" type="text" placeholder="e.g., Extra Chicken" />
+          </div>
+          <div class="field">
+            <label for="customPrice">Price (₦)</label>
+            <input id="customPrice" type="number" min="0" step="50" placeholder="1000" />
+          </div>
+          <div class="actions">
+            <button class="btn" id="addCustomBtn">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <a href="index.html" class="logo">TARIS FOOD</a>
+        <p class="muted"> 22,Myrtle School Road, Biogbolo, Yenagoa, Bayelsa State• © <span id="year"></span></p>
+      </div>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="menu.html">Menu</a>
+        <a href="testimonials.html">Testimonials</a>
+        <a href="about.html">About</a>
+        <a href="reservations.html">Reservations</a>
+        <a class="active" href="order.html">Order</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

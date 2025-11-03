@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reservations • TARIS FOOD</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a href="index.html" class="logo"><img src="logo-tarisfood.svg" alt="" class="logo-mark" /><span>TARIS FOOD</span></a>
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+      <nav class="site-nav" data-nav>
+        <a href="index.html">Home</a>
+        <a href="menu.html">Menu</a>
+        <a href="testimonials.html">Testimonials</a>
+        <a href="about.html">About</a>
+        <a class="active" href="reservations.html">Reservations</a>
+        <a href="order.html">Order</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <h1>Book a Reservation</h1>
+        <p>Reserve a table for a date, birthday celebration, or special event.</p>
+      </div>
+    </section>
+
+    <section class="section" id="reservations">
+      <div class="container contact-grid">
+        <div class="contact-copy">
+          <h2>Celebrations & Events</h2>
+          <p>We offer indoor seating and outdoor setups upon request. Let us know your occasion and any special preferences.</p>
+          <ul class="list">
+            <li><strong>Occasions:</strong> Dates, Birthdays, Anniversaries, Family Dinners</li>
+            <li><strong>Capacity:</strong> 2–40 guests (contact us for larger events)</li>
+          </ul>
+        </div>
+        <form class="contact-form" id="reservationForm" novalidate>
+          <div class="field">
+            <label for="rName">Full Name</label>
+            <input id="rName" name="name" type="text" placeholder="Your full name" required />
+            <small class="error" data-error-for="rName"></small>
+          </div>
+          <div class="field">
+            <label for="rPhone">Phone</label>
+            <input id="rPhone" name="phone" type="tel" placeholder="0803 000 0000" required />
+            <small class="error" data-error-for="rPhone"></small>
+          </div>
+          <div class="field">
+            <label for="rDate">Date</label>
+            <input id="rDate" name="date" type="date" required />
+            <small class="error" data-error-for="rDate"></small>
+          </div>
+          <div class="field">
+            <label for="rTime">Time</label>
+            <input id="rTime" name="time" type="time" required />
+            <small class="error" data-error-for="rTime"></small>
+          </div>
+          <div class="field">
+            <label for="rGuests">Guests</label>
+            <input id="rGuests" name="guests" type="number" min="1" max="100" value="2" required />
+            <small class="error" data-error-for="rGuests"></small>
+          </div>
+          <div class="field">
+            <label for="rOccasion">Occasion</label>
+            <select id="rOccasion" name="occasion" required>
+              <option value="date">Date</option>
+              <option value="birthday">Birthday</option>
+              <option value="anniversary">Anniversary</option>
+              <option value="family">Family Dinner</option>
+              <option value="other">Other</option>
+            </select>
+            <small class="error" data-error-for="rOccasion"></small>
+          </div>
+          <div class="field">
+            <label for="rNotes">Notes</label>
+            <textarea id="rNotes" name="notes" rows="5" placeholder="Any preferences, decorations, or requests?"></textarea>
+          </div>
+          <div class="actions">
+            <button class="btn primary" type="submit">Book Reservation</button>
+            <p class="form-status" id="reservationStatus" role="status" aria-live="polite"></p>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <a href="index.html" class="logo"><img src="logo-tarisfood.svg" alt="" class="logo-mark" /><span>TARIS FOOD</span></a>
+        <p class="muted"> 22,Myrtle School Road, Biogbolo, Yenagoa, Bayelsa State • © <span id="year"></span></p>
+      </div>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="menu.html">Menu</a>
+        <a href="testimonials.html">Testimonials</a>
+        <a href="about.html">About</a>
+        <a class="active" href="reservations.html">Reservations</a>
+        <a href="order.html">Order</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

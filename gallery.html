@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gallery • TARIS FOOD</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a href="index.html" class="logo"><img src="logo-tarisfood.svg" alt="" class="logo-mark" /><span>TARIS FOOD</span></a>
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+      <nav class="site-nav" data-nav>
+        <a href="index.html">Home</a>
+        <a href="menu.html">Menu</a>
+        <a class="active" href="gallery.html">Gallery</a>
+        <a href="testimonials.html">Testimonials</a>
+        <a href="about.html">About</a>
+        <a href="reservations.html">Reservations</a>
+        <a href="order.html">Order</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <h1>Food Gallery</h1>
+        <p>A glimpse of our delicious meals and refreshing drinks.</p>
+      </div>
+    </section>
+
+    <section class="section" id="gallery">
+      <div class="container">
+        <div class="gallery-grid" id="galleryGrid">
+          <!-- 20+ images (food-specific) -->
+          <img src="https://loremflickr.com/600/600/food,platter" alt="Food Platter" data-lightbox />
+          <img src="https://loremflickr.com/600/750/food,rice" alt="Rice Dish" data-lightbox />
+          <img src="https://loremflickr.com/600/500/food,grilled,fish" alt="Grilled Fish" data-lightbox />
+          <img src="https://loremflickr.com/600/700/food,soup" alt="Soup Bowl" data-lightbox />
+          <img src="https://loremflickr.com/600/650/food,chicken" alt="Chicken" data-lightbox />
+          <img src="https://loremflickr.com/600/500/food,beef" alt="Beef" data-lightbox />
+          <img src="https://loremflickr.com/600/600/food,salad" alt="Salad" data-lightbox />
+          <img src="https://loremflickr.com/600/800/food,pizza" alt="Pizza" data-lightbox />
+          <img src="https://loremflickr.com/600/600/food,burger" alt="Burger" data-lightbox />
+          <img src="https://loremflickr.com/600/500/food,fries" alt="Fries" data-lightbox />
+          <img src="https://loremflickr.com/600/700/food,dessert" alt="Dessert" data-lightbox />
+          <img src="https://loremflickr.com/600/650/drink,juice" alt="Juice" data-lightbox />
+          <img src="https://loremflickr.com/600/500/drink,mocktail" alt="Mocktail" data-lightbox />
+          <img src="https://loremflickr.com/600/600/food,kebab" alt="Kebab" data-lightbox />
+          <img src="https://loremflickr.com/600/500/food,shawarma" alt="Shawarma" data-lightbox />
+          <img src="https://loremflickr.com/600/700/food,grill" alt="Grill" data-lightbox />
+          <img src="https://loremflickr.com/600/650/food,wings" alt="Wings" data-lightbox />
+          <img src="https://loremflickr.com/600/500/food,seafood" alt="Seafood" data-lightbox />
+          <img src="https://loremflickr.com/600/600/food,noodles" alt="Noodles" data-lightbox />
+          <img src="https://loremflickr.com/600/500/food,wrap" alt="Wrap" data-lightbox />
+          <img src="https://loremflickr.com/600/650/drink,smoothie" alt="Smoothie" data-lightbox />
+          <img src="https://loremflickr.com/600/650/drink,milkshake" alt="Milkshake" data-lightbox />
+        </div>
+      </div>
+    </section>
+
+    <section class="section cta">
+      <div class="container cta-inner">
+        <h2>Craving something now?</h2>
+        <p>Hop to the menu and place an order.</p>
+        <a class="btn primary" href="menu.html">See Menu</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <a href="index.html" class="logo"><img src="logo-tarisfood.svg" alt="" class="logo-mark" /><span>TARIS FOOD</span></a>
+        <p class="muted">Biogbolo, Bayelsa State • © <span id="year"></span></p>
+      </div>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="menu.html">Menu</a>
+        <a class="active" href="gallery.html">Gallery</a>
+        <a href="testimonials.html">Testimonials</a>
+        <a href="about.html">About</a>
+        <a href="reservations.html">Reservations</a>
+        <a href="order.html">Order</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </footer>
+
+  <div id="lightbox" class="lightbox" aria-hidden="true">
+    <button class="lightbox-close" aria-label="Close">×</button>
+    <img alt="" />
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact • TARIS FOOD</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a href="index.html" class="logo"><img src="logo-tarisfood.svg" alt="" class="logo-mark" /><span>TARIS FOOD</span></a>
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+      <nav class="site-nav" data-nav>
+        <a href="index.html">Home</a>
+        <a href="menu.html">Menu</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="testimonials.html">Testimonials</a>
+        <a href="about.html">About</a>
+        <a class="active" href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <h1>Contact Us</h1>
+        <p>We serve Biogbolo, Bayelsa State — reach out for orders, reservations, or catering.</p>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="container contact-grid">
+        <div class="contact-copy">
+          <h2>Get in touch</h2>
+          <p>We typically respond within 1–2 business hours during opening times.</p>
+          <ul class="list">
+            <li><strong>Address:</strong> 22,Myrtle School Road, Biogbolo, Yenagoa, Bayelsa State</li>
+            <li><strong>Phone:</strong> +234 701 547 1331</li>
+            <li><strong>Email:</strong> ordertarisfood@gmail.com</li>
+            <li><strong>Hours:</strong> Mon–Sat 9:00–21:00 • Sun 11:00–20:00</li>
+          </ul>
+        </div>
+        <form class="contact-form" id="contactForm" novalidate>
+          <div class="field">
+            <label for="name">Name</label>
+            <input id="name" name="name" type="text" placeholder="Your full name" required />
+            <small class="error" data-error-for="name"></small>
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" placeholder="you@example.com" required />
+            <small class="error" data-error-for="email"></small>
+          </div>
+          <div class="field">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="6" placeholder="Your order, reservation, or question" required></textarea>
+            <small class="error" data-error-for="message"></small>
+          </div>
+          <div class="actions">
+            <button class="btn primary" type="submit">Send</button>
+            <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <a href="index.html" class="logo"><img src="logo-tarisfood.svg" alt="" class="logo-mark" /><span>TARIS FOOD</span></a>
+        <p class="muted"> 22,Myrtle School Road, Biogbolo, Yenagoa, Bayelsa State • © <span id="year"></span></p>
+      </div>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="menu.html">Menu</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="testimonials.html">Testimonials</a>
+        <a href="about.html">About</a>
+        <a class="active" href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
