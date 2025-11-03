@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Menu • TARIS FOOD</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a href="index.html" class="logo"><img src="logo-tarisfood.svg" alt="" class="logo-mark" /><span>TARIS FOOD</span></a>
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+      <nav class="site-nav" data-nav>
+        <a href="index.html">Home</a>
+        <a class="active" href="menu.html">Menu</a>
+        <a href="testimonials.html">Testimonials</a>
+        <a href="about.html">About</a>
+        <a href="reservations.html">Reservations</a>
+        <a href="order.html">Order</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <h1>Our Menu</h1>
+        <p>Freshly prepared meals — dine-in, takeaway, or delivery in Biogbolo.</p>
+      </div>
+    </section>
+
+    <section class="section" id="menu-controls">
+      <div class="container menu-controls">
+        <input type="search" id="menuSearch" placeholder="Search dishes (e.g., rice, chicken)..." aria-label="Search menu" />
+        <div class="filters" role="tablist" aria-label="Filter menu">
+          <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true">All</button>
+          <button class="filter-btn" data-filter="rice" role="tab">Rice</button>
+          <button class="filter-btn" data-filter="soups" role="tab">Soups</button>
+          <button class="filter-btn" data-filter="grills" role="tab">Grills</button>
+          <button class="filter-btn" data-filter="snacks" role="tab">Snacks</button>
+          <button class="filter-btn" data-filter="drinks" role="tab">Drinks</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="menu-list">
+      <div class="container">
+        <div class="cards-grid three" id="menuGrid">
+          <!-- 25+ items with royalty-free images -->
+          <!-- Rice -->
+          <article class="card dish" data-category="rice">
+            <img src="jollofrice.jpeg" alt="Jollof Rice" />
+            <h3>Jollof Rice</h3>
+            <p>Smoky, spicy, and savory.</p>
+          </article>
+          <article class="card dish" data-category="rice">
+            <img src="fried%20rice.jpeg" alt="Fried Rice" />
+            <h3>Fried Rice</h3>
+            <p>Colorful veggies and tasty spices.</p>
+          </article>
+          <article class="card dish" data-category="rice">
+            <img src="coconutrice.jpeg" alt="Coconut Rice" />
+            <h3>Coconut Rice</h3>
+            <p>Creamy coconut flavor.</p>
+          </article>
+          <article class="card dish" data-category="rice">
+            <img src="whitebrice%20and%20stew.jpeg" alt="White Rice & Stew" />
+            <h3>White Rice & Stew</h3>
+            <p>Classic tomato stew with protein.</p>
+          </article>
+
+          <!-- Soups -->
+          <article class="card dish" data-category="soups">
+            <img src="egusi%20soup.jpeg" alt="Egusi Soup" />
+            <h3>Egusi Soup</h3>
+            <p>Rich melon seed soup.</p>
+          </article>
+
+          <article class="card dish" data-category="soups">
+            <img src="banga%20soup.jpeg" alt="Banga Soup" />
+            <h3>Egusi Soup</h3>
+            <p>Rich melon seed soup.</p>
+          </article>
+
+          <article class="card dish" data-category="soups">
+            <img src="afang%20soup.jpeg" alt="Afang Soup" />
+            <h3>Egusi Soup</h3>
+            <p>Rich melon seed soup.</p>
+          </article>
+
+          <article class="card dish" data-category="soups">
+            <img src="okra%20soup.jpeg" alt="Okra Soup" />
+            <h3>Okra Soup</h3>
+            <p>Fresh, hearty, and flavorful.</p>
+          </article>
+
+          <article class="card dish" data-category="soups">
+            <img src="goatmeat%20peppersoup.jpeg" alt="Pepper Soup" />
+            <h3>Pepper Soup</h3>
+            <p>Spicy broth with fish or goat.</p>
+          </article>
+
+          <article class="card dish" data-category="soups">
+            <img src="sea%20food%20soup.jpeg" alt="Seafood Soup" />
+            <h3>Seafood Soup</h3>
+            <p>Fresh seafood medley.</p>
+          </article>
+
+          <!-- Grills -->
+          <article class="card dish" data-category="grills">
+            <img src="grilled%20chiken.jpeg" alt="Grilled Chicken" />
+            <h3>Grilled Chicken</h3>
+            <p>Marinated and juicy.</p>
+          </article>
+
+          <article class="card dish" data-category="grills">
+            <img src="grilled%20fish.jpeg" alt="Grilled Fish" />
+            <h3>Grilled Fish</h3>
+            <p>Spiced and flame-grilled.</p>
+          </article>
+
+          <article class="card dish" data-category="grills">
+            <img src="beef%20kebab.jpeg" alt="Beef Kebab" />
+            <h3>Beef Kebab</h3>
+            <p>Charred edges, tender center.</p>
+          </article>
+
+          <article class="card dish" data-category="grills">
+            <img src="bbq%20ribbs.jpeg" alt="BBQ Ribs" />
+            <h3>BBQ Ribs</h3>
+            <p>Sticky and satisfying.</p>
+          </article>
+
+          <!-- Snacks -->
+          <article class="card dish" data-category="snacks">
+            <img src="meat%20pies.jpeg" alt="Meat Pie" />
+            <h3>Meat Pie</h3>
+            <p>Flaky crust and rich filling.</p>
+          </article>
+
+          <article class="card dish" data-category="snacks">
+            <img src="puff%20puff.jpeg" alt="Puff-Puff" />
+            <h3>Puff-Puff</h3>
+            <p>Golden and fluffy bites.</p>
+          </article>
+
+          <article class="card dish" data-category="snacks">
+            <img src="shawamas.jpeg" alt="Shawarma" />
+            <h3>Shawarma</h3>
+            <p>Loaded with chicken and veggies.</p>
+          </article>
+
+          <article class="card dish" data-category="snacks">
+            <img src="pizza%20slices.jpeg" alt="Pizza Slices" />
+            <h3>Pizza Slices</h3>
+            <p>Cheesy goodness.</p>
+          </article>
+
+          <!-- Drinks -->
+          <article class="card dish" data-category="drinks">
+            <img src="zobo.jpeg" alt="Zobo Drink" />
+            <h3>Zobo</h3>
+            <p>Refreshing hibiscus drink.</p>
+          </article>
+
+          <article class="card dish" data-category="drinks">
+            <img src="fruit%20smoothie.jpeg" alt="Fruit Smoothie" />
+            <h3>Fruit Smoothie</h3>
+            <p>Fresh seasonal fruits.</p>
+          </article>
+
+          <article class="card dish" data-category="drinks">
+            <img src="fresh%20juice.jpeg" alt="Fresh Juice" />
+            <h3>Fresh Juice</h3>
+            <p>Orange, pineapple, more.</p>
+          </article>
+
+          <article class="card dish" data-category="drinks">
+            <img src="moctails.jpeg" alt="Mocktail" />
+            <h3>Mocktail</h3>
+            <p>Colorful and cooling.</p>
+          </article>
+
+          <article class="card dish" data-category="drinks">
+            <img src="wines%20images.jpeg" alt="Wines" />
+            <h3>wines</h3>
+            <p>Colorful and cooling.</p>
+          </article>
+
+          <!-- Extras to exceed 25 items -->
+          <article class="card dish" data-category="rice">
+            <img src="beef%20fried%20rice.jpeg" alt="Beef Fried Rice" />
+            <h3>Beef Fried Rice</h3>
+            <p>Hearty and flavorful.</p>
+          </article>
+
+          <article class="card dish" data-category="soups">
+            <img src="draw%20soup.jpeg" alt="Draw Soup" />
+            <h3>Afang Soup</h3>
+            <p>Vegetable-rich goodness.</p>
+          </article>
+
+          <article class="card dish" data-category="grills">
+            <img src="spicy%20wings.jpeg" alt="Spicy Wings" />
+            <h3>Spicy Wings</h3>
+            <p>Hot and crispy.</p>
+          </article>
+
+          <article class="card dish" data-category="snacks">
+            <img src="club%20sandwich.jpeg" alt="Club Sandwich" />
+            <h3>Club Sandwich</h3>
+            <p>Stacked layers.</p>
+          </article>
+
+          <article class="card dish" data-category="drinks">
+            <img src="milk%20shakes.jpeg" alt="Milkshake" />
+            <h3>Milkshake</h3>
+            <p>Thick and creamy.</p>
+          </article>
+       
+        </div>
+      </div>
+    </section>
+
+    <section class="section cta">
+      <div class="container cta-inner">
+        <h2>Ready to order?</h2>
+        <p>Call or send a message and we’ll deliver swiftly.</p>
+        <a class="btn primary" href="contact.html">Contact us</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <a href="index.html" class="logo"><img src="logo-tarisfood.svg" alt="" class="logo-mark" /><span>TARIS FOOD</span></a>
+        <p class="muted"> 22,Myrtle School Road, Biogbolo, Yenagoa, Bayelsa State • © <span id="year"></span></p>
+      </div>
+      <nav>
+        <a href="index.html">Home</a>
+        <a class="active" href="menu.html">Menu</a>
+        <a href="testimonials.html">Testimonials</a>
+        <a href="about.html">About</a>
+        <a href="reservations.html">Reservations</a>
+        <a href="order.html">Order</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </footer>
+
+  <div id="lightbox" class="lightbox" aria-hidden="true">
+    <button class="lightbox-close" aria-label="Close">×</button>
+    <img alt="" />
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>
