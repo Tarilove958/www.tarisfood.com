@@ -2,9 +2,15 @@
 session_start();
 require_once '../includes/config.php';
 
-// Check if user is logged in
+// Access Control: Check if user is logged in
 if (!isLoggedIn()) {
     header('Location: ../login.php?redirect=user/order-details.php');
+    exit;
+}
+
+// Access Control: Block admins from accessing user pages
+if (isAdmin()) {
+    header('Location: ../admin/index.php');
     exit;
 }
 
@@ -29,29 +35,78 @@ if (!$order) {
 $stmt = $pdo->prepare("SELECT oi.*, p.product_name FROM order_items oi JOIN products p ON oi.product_id = p.product_id WHERE oi.order_id = ?");
 $stmt->execute([$order_id]);
 $order_items = $stmt->fetchAll();
+
+// Get active theme for dynamic colors
+$activeTheme = getActiveTheme();
+$primaryColor = $activeTheme['primary_color'] ?? '#3b82f6';
+$secondaryColor = $activeTheme['secondary_color'] ?? '#f97316';
+$successColor = '#10b981';
+$dangerColor = '#ef4444';
 ?>
 
+<style>
+    :root {
+        --primary: <?php echo $primaryColor; ?>;
+        --secondary: <?php echo $secondaryColor; ?>;
+        --success: <?php echo $successColor; ?>;
+        --danger: <?php echo $dangerColor; ?>;
+    }
+    
+    body {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .main-content {
+        flex: 1;
+    }
+    
+    .page-header {
+        background: linear-gradient(135deg, <?php echo $primaryColor; ?> 0%, <?php echo adjustBrightness($primaryColor, -20); ?> 100%) !important;
+    }
+    
+    .back-link {
+        color: rgba(255, 255, 255, 0.9);
+    }
+    
+    .back-link:hover {
+        color: white;
+    }
+    
+    .status-badge {
+        padding: 8px 12px;
+        border-radius: 6px;
+        font-size: 12px;
+        font-weight: bold;
+    }
+    
+    .item-total {
+        color: <?php echo $secondaryColor; ?>;
+    }
+</style>
+
 <!-- Page Header -->
-<div class="bg-gradient-to-r from-primary to-blue-600 text-white py-12">
+<div class="text-white py-12 page-header">
     <div class="max-w-6xl mx-auto px-4">
         <div class="flex items-center gap-2 mb-4">
-            <a href="orders.php" class="flex items-center gap-1 text-blue-100 hover:text-white">
+            <a href="orders.php" class="back-link flex items-center gap-1 transition-colors">
                 <i class="bi bi-chevron-left"></i> Back to Orders
             </a>
         </div>
         <h1 class="font-bricolage font-bold text-4xl mb-2">Order #<?php echo $order['order_id']; ?></h1>
-        <p class="text-blue-100">Placed on <?php echo date('F d, Y • g:i A', strtotime($order['order_date'])); ?></p>
+        <p class="opacity-90">Placed on <?php echo date('F d, Y • g:i A', strtotime($order['order_date'])); ?></p>
     </div>
 </div>
 
-<div class="max-w-4xl mx-auto px-4 py-12">
+<div class="main-content max-w-4xl mx-auto px-4 py-12">
     <?php if ($order['order_status'] == 'cancelled'): ?>
-    <div class="mb-6 p-4 rounded-lg bg-red-50 border-l-4 border-red-500">
+    <div class="mb-6 p-4 rounded-lg border-l-4" style="background-color: <?php echo adjustBrightness($dangerColor, 80); ?>; border-color: <?php echo $dangerColor; ?>; color: white;">
         <div class="flex items-start gap-3">
-            <i class="bi bi-exclamation-circle text-red-600 text-xl mt-0.5"></i>
+            <i class="bi bi-exclamation-circle text-xl mt-0.5"></i>
             <div>
-                <p class="font-bold text-red-700">Order Rejected</p>
-                <p class="text-sm text-red-600">This order has been rejected by the restaurant. Please contact support if you have any questions.</p>
+                <p class="font-bold">Order Rejected</p>
+                <p class="text-sm opacity-90">This order has been rejected by the restaurant. Please contact support if you have any questions.</p>
             </div>
         </div>
     </div>

@@ -1,0 +1,224 @@
+/* ===========================
+   THEME 2: PREMIUM SUNSET - ELEGANT WARMTH
+   Luxury warm colors, elegant design
+   Primary: Red (#E74C3C), Secondary: Gold (#F39C12)
+   =========================== */
+
+:root {
+    --primary: #E74C3C;
+    --secondary: #F39C12;
+    --dark: #2C3E50;
+    --light: #ECF0F1;
+    --accent: #C0392B;
+    --success: #27AE60;
+    --danger: #E74C3C;
+    --warning: #F39C12;
+    --info: #3498DB;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@700;800&display=swap');
+
+/* ===== TYPOGRAPHY ===== */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
+    color: #2C3E50;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #FFF5F0;
+    color: #2C3E50;
+    letter-spacing: 0.3px;
+}
+
+/* ===== GRADIENT TEXT ===== */
+.gradient-text {
+    background: linear-gradient(135deg, #E74C3C, #C0392B);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 800;
+}
+
+/* ===== TEXT VISIBILITY ===== */
+body {
+    color: #1f2937;
+}
+
+a {
+    color: #E74C3C !important;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* ===== MENU PAGE STYLES ===== */
+.menu-title {
+    color: #E74C3C !important;
+}
+
+.menu-subtitle {
+    color: #E74C3C !important;
+}
+
+/* ===== BUTTONS ===== */
+.btn-primary {
+    background: linear-gradient(135deg, #E74C3C, #C0392B);
+    color: #ffffff;
+    box-shadow: 0 10px 30px rgba(231, 76, 60, 0.3);
+    border-radius: 50px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+}
+
+.btn-primary:hover {
+    box-shadow: 0 15px 40px rgba(231, 76, 60, 0.4);
+    transform: translateY(-3px);
+}
+
+.btn-secondary {
+    background: linear-gradient(135deg, #F39C12, #E67E22);
+    color: #ffffff;
+    box-shadow: 0 10px 30px rgba(243, 156, 18, 0.3);
+    border-radius: 50px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn-secondary:hover {
+    box-shadow: 0 15px 40px rgba(243, 156, 18, 0.4);
+    transform: translateY(-3px);
+}
+
+/* ===== HEADER STYLES ===== */
+header {
+    background: linear-gradient(135deg, #E74C3C, #C0392B);
+    border-bottom: 3px solid #A93226;
+    box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3);
+    color: #ffffff;
+}
+
+header h1, header h2, header h3, header h4, header h5, header h6 {
+    color: #ffffff !important;
+}
+
+header p, header span {
+    color: #ffffff !important;
+}
+
+header a, header .nav-link {
+    color: #ffffff !important;
+}
+
+header a:hover, header .nav-link:hover {
+    color: #F39C12;
+}
+
+header nav {
+    background: transparent;
+}
+
+/* ===== CARDS ===== */
+.card {
+    background: #FFF0E6;
+    border: 2px solid #FFDBCC;
+    box-shadow: 0 8px 20px rgba(231, 76, 60, 0.08);
+    border-radius: 15px;
+}
+
+.card:hover {
+    box-shadow: 0 20px 40px rgba(231, 76, 60, 0.15);
+    border-color: #E74C3C;
+    transform: translateY(-8px);
+    background: #FFE0CC;
+}
+
+/* ===== PRODUCT CARDS ===== */
+.product-card {
+    border: 2px solid #FFDBCC;
+    background: #FFF0E6;
+    border-radius: 15px;
+    transition: all 0.4s ease;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.product-card:hover {
+    border-color: #E74C3C;
+    box-shadow: 0 20px 40px rgba(231, 76, 60, 0.15);
+    transform: translateY(-8px);
+    background: #FFE0CC;
+}
+
+/* ===== SECTIONS ===== */
+section {
+    background-color: #FFF5F0;
+}
+
+section p {
+    color: #000000 !important;
+}
+
+section.bg-light {
+    background: linear-gradient(135deg, #FFF0E6, #FFE5D0);
+}
+
+section.bg-accent {
+    background: linear-gradient(135deg, #E74C3C, #C0392B);
+    color: black;
+}
+
+/* ===== BADGES ===== */
+.badge-primary {
+    background: linear-gradient(135deg, #FCE4E4, #FDD0D0);
+    color: #C0392B;
+    border: 1px solid #E74C3C;
+}
+
+.badge-secondary {
+    background: linear-gradient(135deg, #FEF0D5, #FEE5B3);
+    color: #B8860B;
+    border: 1px solid #F39C12;
+}
+
+/* ===== LINKS ===== */
+a {
+    color: #E74C3C;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+a:hover {
+    color: #C0392B;
+    text-decoration: underline;
+}
+
+/* ===== LIST ITEMS ===== */
+ul li {
+    color: #000000;
+}
+
+/* ===== SPECIAL ELEMENTS ===== */
+.success-badge {
+    background: linear-gradient(135deg, #D5F4E6, #ABEBC6);
+    color: #1E5631;
+}
+
+.danger-badge {
+    background: linear-gradient(135deg, #FADBD8, #F5B7B1);
+    color: #78281F;
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes glow-sunset {
+    0%, 100% {
+        box-shadow: 0 0 20px rgba(231, 76, 60, 0.3);
+    }
+    50% {
+        box-shadow: 0 0 40px rgba(243, 156, 18, 0.4);
+    }
+}

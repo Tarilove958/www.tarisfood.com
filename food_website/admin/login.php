@@ -1,10 +1,17 @@
 <?php
-// admin/login.php
+// admin/login.php - ADMIN ONLY LOGIN
 require_once dirname(__DIR__) . '/includes/config.php';
+require_once dirname(__DIR__) . '/includes/theme-manager.php';
 require_once dirname(__DIR__) . '/includes/functions.php';
 
-if (isset($_SESSION['user_id']) && $_SESSION['user_type'] === 'admin') {
+// If already logged in as admin, go to dashboard
+if (isLoggedIn() && isAdmin()) {
     redirect('index.php');
+}
+
+// If logged in as regular user, redirect to user dashboard
+if (isLoggedIn() && !isAdmin()) {
+    redirect('../user/index.php');
 }
 
 $error = '';
@@ -13,6 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = sanitize($_POST['email']);
     $password = $_POST['password'];
 
+    // Only check for admin users
     $sql = "SELECT * FROM users WHERE email = ? AND user_type = 'admin' LIMIT 1";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("s", $email);
@@ -22,17 +30,35 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($result->num_rows === 1) {
         $user = $result->fetch_assoc();
         if (password_verify($password, $user['password'])) {
-            $_SESSION['user_id'] = $user['user_id'];
-            $_SESSION['user_name'] = $user['full_name'];
-            $_SESSION['user_type'] = 'admin';
+            // Admin login successful - Use proper session function
+            if (function_exists('loginUser')) {
+                loginUser($user['user_id'], $user['email'], 'admin');
+            } else {
+                // Fallback if function doesn't exist
+                $_SESSION['user_id'] = $user['user_id'];
+                $_SESSION['user_email'] = $user['email'];
+                $_SESSION['user_name'] = $user['full_name'];
+                $_SESSION['user_type'] = 'admin';
+                $_SESSION['last_activity'] = time();
+                $_SESSION['created'] = time();
+                $_SESSION['ip_address'] = $_SERVER['REMOTE_ADDR'];
+                $_SESSION['user_agent'] = $_SERVER['HTTP_USER_AGENT'];
+            }
             redirect('index.php');
         } else {
             $error = "Invalid password.";
         }
     } else {
-        $error = "Admin account not found.";
+        // No admin found with this email
+        $error = "Admin account not found. This portal is for administrators only.";
     }
 }
+
+// Get active theme for styling
+$activeTheme = getActiveTheme();
+$primaryColor = $activeTheme['primary_color'] ?? '#0066CC';
+$secondaryColor = $activeTheme['secondary_color'] ?? '#DC3545';
+$darkColor = $activeTheme['dark_color'] ?? '#212529';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -40,18 +66,36 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Login - <?php echo SITE_NAME; ?></title>
+    
+    <!-- Favicon - Multiple formats for best browser compatibility -->
+    <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg">
+    <link rel="icon" type="image/png" href="../assets/images/favicon.png">
+    <link rel="apple-touch-icon" href="../assets/images/favicon.svg">
+    <meta name="theme-color" content="#FF6B35">
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700&family=Outfit:wght@400;500&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    colors: { primary: '#0066CC', secondary: '#DC3545', dark: '#212529' },
+                    colors: { 
+                        primary: '<?php echo $primaryColor; ?>', 
+                        secondary: '<?php echo $secondaryColor; ?>', 
+                        dark: '<?php echo $darkColor; ?>' 
+                    },
                     fontFamily: { heading: ['"Bricolage Grotesque"', 'sans-serif'], body: ['"Outfit"', 'sans-serif'] }
                 }
             }
         }
     </script>
+    <style>
+        :root {
+            --primary: <?php echo $primaryColor; ?>;
+            --secondary: <?php echo $secondaryColor; ?>;
+            --dark: <?php echo $darkColor; ?>;
+        }
+    </style>
 </head>
 <body class="bg-dark flex items-center justify-center min-h-screen font-body p-4">
     <div class="bg-white p-8 rounded-3xl shadow-2xl w-full max-w-md">

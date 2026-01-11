@@ -59,6 +59,38 @@ function getSetting($key, $default = '') {
 }
 ?>
 
+<style>
+    /* Make all input box text black in settings page */
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="password"],
+    input[type="number"],
+    select,
+    textarea {
+        color: #000000 !important;
+    }
+    
+    /* Ensure placeholder text is visible but lighter */
+    input::placeholder,
+    textarea::placeholder {
+        color: #999999 !important;
+    }
+    
+    /* Ensure selected options are visible */
+    select option {
+        color: #000000 !important;
+    }
+    
+    /* Make currency, phone number, and address inputs white background */
+    select[name="currency"],
+    input[name="site_phone"],
+    textarea[name="site_address"] {
+        background-color: #ffffff !important;
+        color: #000000 !important;
+    }
+</style>
+
 <div class="mb-8">
     <h1 class="font-heading text-3xl font-bold text-gray-800">Settings</h1>
     <p class="text-gray-500">Manage your site configuration and payment gateways</p>

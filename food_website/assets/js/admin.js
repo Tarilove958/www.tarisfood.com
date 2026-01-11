@@ -1,6 +1,6 @@
 /* ===========================
    ADMIN DASHBOARD JAVASCRIPT
-   Modern Admin Controls
+   Modern Admin Controls & Interactions
    =========================== */
 
 // ===== INITIALIZATION =====
@@ -12,7 +12,82 @@ document.addEventListener('DOMContentLoaded', function() {
     initFloatingActionMenu();
     initTableFeatures();
     initDataFilters();
+    initHeaderInteractions();
+    initSmoothScrolling();
+    initAnimations();
 });
+
+// ===== HEADER INTERACTIONS =====
+function initHeaderInteractions() {
+    // Search functionality
+    const searchInput = document.querySelector('input[placeholder="Search..."]');
+    if(searchInput) {
+        searchInput.addEventListener('focus', function() {
+            this.parentElement.classList.add('border-primary');
+        });
+        searchInput.addEventListener('blur', function() {
+            this.parentElement.classList.remove('border-primary');
+        });
+    }
+
+    // Notification bell animation
+    const notificationBtn = document.querySelector('[title="Notifications"]');
+    if(notificationBtn) {
+        notificationBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            this.classList.add('animate-bounce');
+            setTimeout(() => this.classList.remove('animate-bounce'), 500);
+        });
+    }
+
+    // Profile dropdown hover effect
+    const profileDropdown = document.querySelector('.group');
+    if(profileDropdown) {
+        profileDropdown.addEventListener('mouseenter', function() {
+            const dropdown = this.querySelector('[class*="group-hover"]');
+            if(dropdown) {
+                dropdown.style.animation = 'slideDown 0.3s ease';
+            }
+        });
+    }
+}
+
+// ===== SMOOTH SCROLLING & ANIMATIONS =====
+function initSmoothScrolling() {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            if(href && href !== '#') {
+                e.preventDefault();
+                const target = document.querySelector(href);
+                if(target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }
+        });
+    });
+}
+
+function initAnimations() {
+    // Observe elements for scroll animations
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -100px 0px'
+    };
+
+    const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+            if(entry.isIntersecting) {
+                entry.target.style.animation = 'fadeInUp 0.6s ease forwards';
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.stat-card, .admin-card, table tbody tr').forEach(el => {
+        observer.observe(el);
+    });
+}
 
 // ===== ADMIN SIDEBAR =====
 function initAdminSidebar() {

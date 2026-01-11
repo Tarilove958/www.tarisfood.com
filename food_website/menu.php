@@ -78,8 +78,8 @@ $products = $stmt->fetchAll();
         
         <!-- Main Heading -->
         <div class="text-center mb-8">
-            <h1 class="font-bricolage font-bold text-4xl text-white mb-3">Our Menu</h1>
-            <p class="text-blue-100 text-lg">Explore our delicious offerings</p>
+            <h1 class="font-bricolage font-bold text-4xl menu-title mb-3">Our Menu</h1>
+            <p class="menu-subtitle text-lg">Explore our delicious offerings</p>
         </div>
     </div>
 </div>

@@ -25,7 +25,7 @@ define('DB_NAME', 'food_website');
 // Site Configuration
 define('SITE_URL', 'http://localhost/food_website');
 define('SITE_NAME', 'Food Brand');
-define('SITE_EMAIL', 'info@foodbrand.com');
+define('SITE_EMAIL', 'info@Tarisfood.com');
 define('ADMIN_EMAIL', 'admin@foodbrand.com');
 
 // File Upload Configuration
@@ -91,6 +91,134 @@ try {
 }
 
 /**
+ * Get active/current theme
+ * Returns the user's selected theme or falls back to default
+ * Priority: Active Global Theme > User Preference > Session > Cookie > Default
+ */
+if (!function_exists('getActiveTheme')) {
+    function getActiveTheme() {
+        global $conn;
+        
+        // PRIMARY: Get the globally active theme (set by admin) - THIS IS THE DEFAULT FOR EVERYONE
+        $sql = "SELECT * FROM themes WHERE is_active = TRUE LIMIT 1";
+        $result = $conn->query($sql);
+        
+        if ($result && $result->num_rows > 0) {
+            $activeTheme = $result->fetch_assoc();
+            
+            // SECONDARY: Check if logged-in user has a personal preference override
+            if (isLoggedIn()) {
+                $user_id = $_SESSION['user_id'];
+                $sql = "SELECT * FROM theme_user_preferences WHERE user_id = ? LIMIT 1";
+                $stmt = $conn->prepare($sql);
+                if ($stmt) {
+                    $stmt->bind_param("i", $user_id);
+                    $stmt->execute();
+                    $result = $stmt->get_result();
+                    
+                    if ($result->num_rows > 0) {
+                        $pref = $result->fetch_assoc();
+                        $theme_sql = "SELECT * FROM themes WHERE theme_id = ? LIMIT 1";
+                        $theme_stmt = $conn->prepare($theme_sql);
+                        if ($theme_stmt) {
+                            $theme_stmt->bind_param("i", $pref['theme_id']);
+                            $theme_stmt->execute();
+                            $theme_result = $theme_stmt->get_result();
+                            if ($theme_result->num_rows > 0) {
+                                return $theme_result->fetch_assoc();
+                            }
+                        }
+                    }
+                }
+            }
+            
+            // Return the global active theme
+            return $activeTheme;
+        }
+        
+        // Check session for guest theme preference
+        if (isset($_SESSION['theme_id'])) {
+            $theme_id = $_SESSION['theme_id'];
+            $sql = "SELECT * FROM themes WHERE theme_id = ? LIMIT 1";
+            $stmt = $conn->prepare($sql);
+            if ($stmt) {
+                $stmt->bind_param("i", $theme_id);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                if ($result->num_rows > 0) {
+                    return $result->fetch_assoc();
+                }
+            }
+        }
+        
+        // Check cookie
+        if (isset($_COOKIE['theme_id'])) {
+            $theme_id = (int)$_COOKIE['theme_id'];
+            $sql = "SELECT * FROM themes WHERE theme_id = ? LIMIT 1";
+            $stmt = $conn->prepare($sql);
+            if ($stmt) {
+                $stmt->bind_param("i", $theme_id);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                if ($result->num_rows > 0) {
+                    return $result->fetch_assoc();
+                }
+            }
+        }
+        
+        // Fall back to default theme
+        $sql = "SELECT * FROM themes WHERE is_default = TRUE LIMIT 1";
+        $result = $conn->query($sql);
+        if ($result && $result->num_rows > 0) {
+            return $result->fetch_assoc();
+        }
+        
+        // Last resort - return a basic default theme array
+        return [
+            'theme_id' => 1,
+            'theme_name' => 'Default Theme',
+            'primary_color' => '#3b82f6',
+            'secondary_color' => '#f97316',
+            'dark_color' => '#1f2937',
+            'light_color' => '#f9fafb',
+        ];
+    }
+}
+
+/**
+ * Apply global theme activation
+ * Called by admin when changing the website theme
+ * This ensures all users see the new theme
+ */
+if (!function_exists('applyGlobalTheme')) {
+    function applyGlobalTheme($theme_id) {
+        global $conn;
+        
+        // Verify theme exists
+        $sql = "SELECT * FROM themes WHERE theme_id = ? LIMIT 1";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("i", $theme_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        
+        if ($result->num_rows === 0) {
+            return false;
+        }
+        
+        // Deactivate all themes
+        $sql = "UPDATE themes SET is_active = FALSE, is_default = FALSE";
+        $conn->query($sql);
+        
+        // Activate the selected theme
+        $sql = "UPDATE themes SET is_active = TRUE, is_default = TRUE WHERE theme_id = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("i", $theme_id);
+        
+        return $stmt->execute();
+    }
+}
+
+/**
  * Sanitize input data
  */
 function sanitize($data) {
@@ -113,6 +241,13 @@ function isLoggedIn() {
  */
 function isAdmin() {
     return isset($_SESSION['user_type']) && $_SESSION['user_type'] === 'admin';
+}
+
+/**
+ * Check if current page is in user path
+ */
+function isUserPath() {
+    return strpos($_SERVER['PHP_SELF'], '/user/') !== false;
 }
 
 /**
@@ -357,6 +492,37 @@ function verifyCSRFToken($token) {
 function getCSRFInput() {
     $token = generateCSRFToken();
     return '<input type="hidden" name="csrf_token" value="' . htmlspecialchars($token) . '">';
+}
+
+/**
+ * Adjust brightness of a hex color
+ * @param string $hex Hex color (with or without #)
+ * @param int $percent Percentage to adjust (-100 to 100)
+ * @return string Adjusted hex color
+ */
+function adjustBrightness($hex, $percent) {
+    // Remove # if present
+    $hex = str_replace('#', '', $hex);
+    
+    // Convert to RGB
+    $r = hexdec(substr($hex, 0, 2));
+    $g = hexdec(substr($hex, 2, 2));
+    $b = hexdec(substr($hex, 4, 2));
+    
+    // Adjust brightness
+    $r = intval($r * (1 + $percent / 100));
+    $g = intval($g * (1 + $percent / 100));
+    $b = intval($b * (1 + $percent / 100));
+    
+    // Clamp values to 0-255
+    $r = max(0, min(255, $r));
+    $g = max(0, min(255, $g));
+    $b = max(0, min(255, $b));
+    
+    // Convert back to hex
+    return '#' . str_pad(dechex($r), 2, '0', STR_PAD_LEFT) . 
+                 str_pad(dechex($g), 2, '0', STR_PAD_LEFT) . 
+                 str_pad(dechex($b), 2, '0', STR_PAD_LEFT);
 }
 
 // Generate CSRF token for the session

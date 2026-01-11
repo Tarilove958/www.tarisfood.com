@@ -1,0 +1,291 @@
+/* ===========================
+   THEME 5: BERRY PURPLE - VIBRANT & MODERN
+   Modern vibrant colors, energetic design
+   Primary: Purple (#9B59B6), Secondary: Pink (#E91E63)
+   =========================== */
+
+:root {
+    --primary: #9B59B6;
+    --secondary: #E91E63;
+    --dark: #2C3E50;
+    --light: #F8F9FA;
+    --accent: #3498DB;
+    --success: #27AE60;
+    --danger: #E91E63;
+    --warning: #F39C12;
+    --info: #3498DB;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fredoka:wght@600;700&display=swap');
+
+/* ===== TYPOGRAPHY ===== */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Fredoka', sans-serif;
+    color: #2C3E50;
+    font-weight: 700;
+    letter-spacing: 0px;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, #F3E5F5, #E1BEE7);
+    color: #2C3E50;
+    line-height: 1.6;
+    font-weight: 500;
+}
+
+/* ===== GRADIENT TEXT ===== */
+.gradient-text {
+    background: linear-gradient(135deg, #9B59B6, #E91E63);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 800;
+    animation: shimmer 3s infinite;
+}
+
+/* ===== TEXT VISIBILITY ===== */
+body {
+    color: #1f2937;
+}
+
+a {
+    color: #9B59B6 !important;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* ===== MENU PAGE STYLES ===== */
+.menu-title {
+    color: #9B59B6 !important;
+}
+
+.menu-subtitle {
+    color: #9B59B6 !important;
+}
+
+/* ===== BUTTONS ===== */
+.btn-primary {
+    background: linear-gradient(135deg, #9B59B6, #8E44AD);
+    color: #ffffff;
+    box-shadow: 0 12px 30px rgba(155, 89, 182, 0.35);
+    border-radius: 8px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-primary:hover {
+    box-shadow: 0 18px 45px rgba(155, 89, 182, 0.5);
+    transform: translateY(-4px) scale(1.02);
+}
+
+.btn-secondary {
+    background: linear-gradient(135deg, #E91E63, #C2185B);
+    color: #ffffff;
+    box-shadow: 0 12px 30px rgba(233, 30, 99, 0.35);
+    border-radius: 8px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-secondary:hover {
+    box-shadow: 0 18px 45px rgba(233, 30, 99, 0.5);
+    transform: translateY(-4px) scale(1.02);
+}
+
+/* ===== HEADER STYLES ===== */
+header {
+    background: linear-gradient(135deg, #9B59B6, #8E44AD);
+    border-bottom: 2px solid #6C3584;
+    box-shadow: 0 4px 12px rgba(155, 89, 182, 0.3);
+    color: #ffffff;
+}
+
+header h1, header h2, header h3, header h4, header h5, header h6 {
+    color: #ffffff !important;
+}
+
+header p, header span {
+    color: #ffffff !important;
+}
+
+header nav {
+    background: transparent;
+}
+
+header a, header .nav-link {
+    color: #ffffff !important;
+}
+
+header a:hover, header .nav-link:hover {
+    color: #F8BBD0;
+}
+
+/* ===== CARDS ===== */
+.card {
+    background: #E8D9F5;
+    border: 2px solid #D1B3E8;
+    box-shadow: 0 8px 20px rgba(155, 89, 182, 0.1);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    box-shadow: 0 20px 40px rgba(155, 89, 182, 0.2);
+    border-color: #9B59B6;
+    transform: translateY(-8px);
+    background: #D1B3E8;
+}
+
+/* ===== PRODUCT CARDS ===== */
+.product-card {
+    border: 2px solid #D1B3E8;
+    background: #E8D9F5;
+    border-radius: 12px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 8px 20px rgba(155, 89, 182, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.product-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #9B59B6, #E91E63, #3498DB);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+}
+
+.product-card:hover {
+    border-color: #E91E63;
+    box-shadow: 0 20px 40px rgba(233, 30, 99, 0.2);
+    transform: translateY(-8px);
+}
+
+.product-card:hover::before {
+    transform: scaleX(1);
+}
+
+/* ===== SECTIONS ===== */
+section {
+    background-color: white;
+}
+
+section p {
+    color: #000000 !important;
+}
+
+section.bg-light {
+    background: linear-gradient(135deg, #F8F9FA, #F0F3FF);
+}
+
+section.bg-accent {
+    background: linear-gradient(135deg, #9B59B6, #7D3C98);
+    color: black;
+}
+
+/* ===== BADGES ===== */
+.badge-primary {
+    background: linear-gradient(135deg, #F3E5F5, #E1BEE7);
+    color: #6A1B9A;
+    border: 1px solid #9B59B6;
+}
+
+.badge-secondary {
+    background: linear-gradient(135deg, #FCE4EC, #F8BBD0);
+    color: #880E4F;
+    border: 1px solid #E91E63;
+}
+
+/* ===== LINKS ===== */
+a {
+    color: #9B59B6;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #9B59B6, #E91E63);
+    transition: width 0.3s ease;
+}
+
+a:hover {
+    color: #7D3C98;
+}
+
+a:hover::after {
+    width: 100%;
+}
+
+/* ===== SPECIAL ELEMENTS ===== */
+.success-badge {
+    background: linear-gradient(135deg, #C8E6C9, #A5D6A7);
+    color: #1B5E20;
+}
+
+.danger-badge {
+    background: linear-gradient(135deg, #F8BBD0, #F48FB1);
+    color: #880E4F;
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes shimmer {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.8;
+    }
+}
+
+@keyframes vibrant-glow {
+    0%, 100% {
+        box-shadow: 0 0 20px rgba(155, 89, 182, 0.4);
+    }
+    50% {
+        box-shadow: 0 0 40px rgba(233, 30, 99, 0.5);
+    }
+}
+
+/* ===== GRADIENT ACCENT ===== */
+.gradient-accent {
+    background: linear-gradient(135deg, #9B59B6, #E91E63, #3498DB);
+    background-size: 300% 300%;
+    animation: gradient-shift 8s ease infinite;
+}
+
+/* ===== LIST ITEMS ===== */
+ul li {
+    color: #000000;
+}
+
+@keyframes gradient-shift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}

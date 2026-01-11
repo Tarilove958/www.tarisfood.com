@@ -37,7 +37,7 @@ include 'includes/header.php';
                     <div class="w-10 h-10 rounded-full bg-light flex items-center justify-center text-primary">
                         <i class="bi bi-geo-alt"></i>
                     </div>
-                    <p>Lagos, Nigeria</p>
+                    <p>Bayelsa, Nigeria</p>
                 </div>
             </div>
         </div>

@@ -1,0 +1,448 @@
+/* ================================================
+   ADMIN DASHBOARD MODERN STYLES
+   Professional, Beautiful & Functional Design
+   ================================================ */
+
+/* ===== ANIMATIONS ===== */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse-glow {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.7;
+    }
+}
+
+@keyframes float-animation {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+/* ===== STAT CARDS ENHANCEMENT ===== */
+.stat-card {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.stat-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.stat-card:hover::after {
+    opacity: 1;
+}
+
+.stat-card:hover {
+    transform: translateY(-6px) scale(1.02);
+}
+
+/* ===== ADMIN CARD ENHANCEMENT ===== */
+.admin-card {
+    overflow: hidden;
+    position: relative;
+}
+
+.admin-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary, #3b82f6), var(--secondary, #f97316));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.admin-card:hover::before {
+    opacity: 1;
+}
+
+/* ===== TABLE STYLING ===== */
+table {
+    border-collapse: collapse;
+}
+
+table thead th {
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: 0.75rem;
+    color: #374151;
+    background: linear-gradient(to right, #f9fafb, #f3f4f6);
+    border-bottom: 2px solid #e5e7eb;
+}
+
+table tbody tr {
+    border-bottom: 1px solid #f3f4f6;
+    transition: all 0.2s ease;
+}
+
+table tbody tr:hover {
+    background-color: #fafbfc;
+    box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.02);
+}
+
+table tbody td {
+    padding: 1rem 1.5rem;
+    vertical-align: middle;
+}
+
+/* ===== BADGE STYLES ===== */
+.badge-success {
+    position: relative;
+    overflow: hidden;
+}
+
+.badge-success::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, transparent 0%, rgba(255, 255, 255, 0.2) 100%);
+}
+
+.badge-pending, .badge-cancelled, .badge-processing {
+    position: relative;
+    overflow: hidden;
+}
+
+.badge-pending::before, .badge-cancelled::before, .badge-processing::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, transparent 0%, rgba(255, 255, 255, 0.2) 100%);
+}
+
+/* ===== BUTTON STYLES ===== */
+.btn, button {
+    position: relative;
+    overflow: hidden;
+    letter-spacing: 0.03em;
+    font-weight: 600;
+}
+
+.btn::before, button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.3s, height 0.3s;
+}
+
+.btn:hover::before, button:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+/* ===== INPUT STYLES ===== */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+input[type="date"],
+input[type="time"],
+textarea,
+select {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    background-color: white;
+}
+
+input:hover,
+textarea:hover,
+select:hover {
+    border-color: #d1d5db;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* ===== FORM LABELS ===== */
+label {
+    font-weight: 600;
+    color: #374151;
+    margin-bottom: 0.5rem;
+    display: block;
+    letter-spacing: 0.02em;
+    text-transform: capitalize;
+}
+
+label span.text-red-500 {
+    margin-left: 2px;
+}
+
+/* ===== HEADER STYLES ===== */
+header {
+    backdrop-filter: blur(10px);
+    background-color: rgba(255, 255, 255, 0.95);
+}
+
+header input[type="text"] {
+    transition: all 0.3s ease;
+    background-color: transparent;
+    border: none;
+}
+
+header input[type="text"]:focus {
+    background-color: white;
+}
+
+/* ===== SIDEBAR ENHANCEMENTS ===== */
+aside {
+    overflow: hidden;
+}
+
+aside a {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+aside a::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 0;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1));
+    transition: width 0.3s ease;
+}
+
+aside a:hover::before {
+    width: 100%;
+}
+
+/* ===== DROPDOWN STYLES ===== */
+[class*="group-hover"] {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+}
+
+.group:hover [class*="group-hover"] {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* ===== FLASH MESSAGE ANIMATION ===== */
+.flash-message {
+    animation: slideDown 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ===== SCROLLBAR STYLING ===== */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f3f4f6;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #cbd5e1, #94a3b8);
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #94a3b8, #64748b);
+}
+
+/* ===== RESPONSIVE ADJUSTMENTS ===== */
+@media (max-width: 768px) {
+    .stat-card {
+        padding: 1rem;
+    }
+
+    .stat-card:hover {
+        transform: translateY(-3px) scale(1.01);
+    }
+
+    table tbody td {
+        padding: 0.75rem 1rem;
+        font-size: 0.875rem;
+    }
+
+    table thead th {
+        font-size: 0.7rem;
+        padding: 0.75rem;
+    }
+}
+
+/* ===== UTILITY ANIMATIONS ===== */
+.animate-float {
+    animation: float-animation 3s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* ===== ICON STYLES ===== */
+.icon-wrapper {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.icon-wrapper:hover {
+    transform: scale(1.1) rotate(5deg);
+}
+
+/* ===== GRADIENT BACKGROUNDS ===== */
+.gradient-primary {
+    background: linear-gradient(135deg, var(--primary, #3b82f6), var(--secondary, #f97316));
+}
+
+.gradient-primary-subtle {
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.05), rgba(249, 115, 22, 0.05));
+}
+
+/* ===== LOADING STATE ===== */
+.loading {
+    position: relative;
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+.loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border: 2px solid #e5e7eb;
+    border-top-color: var(--primary, #3b82f6);
+    border-radius: 50%;
+    animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ===== EMPTY STATE ===== */
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem;
+    color: #9ca3af;
+}
+
+.empty-state i {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    opacity: 0.5;
+}
+
+/* ===== GLASS MORPHISM ===== */
+.glass {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* ===== MODERN ELEVATION ===== */
+.elevation-1 {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.elevation-2 {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+}
+
+.elevation-3 {
+    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.15);
+}
+
+/* ===== FOCUS STATES ===== */
+:focus-visible {
+    outline: 2px solid var(--primary, #3b82f6);
+    outline-offset: 2px;
+}
+
+/* ===== DARK MODE SUPPORT (Optional) ===== */
+@media (prefers-color-scheme: dark) {
+    body {
+        background: linear-gradient(135deg, #111827 0%, #1f2937 100%);
+        color: #f3f4f6;
+    }
+
+    .admin-card,
+    header,
+    table thead {
+        background: #1f2937;
+        border-color: #374151;
+    }
+
+    table tbody tr:hover {
+        background-color: #111827;
+    }
+
+    input, textarea, select {
+        background-color: #1f2937;
+        color: #f3f4f6;
+        border-color: #374151;
+    }
+}

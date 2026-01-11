@@ -230,7 +230,13 @@ include 'includes/header.php';
 </div>
 
 <!-- Call-to-Action Banner Section -->
-<section class="py-20 bg-gradient-to-r from-primary via-blue-600 to-secondary relative overflow-hidden">
+<?php
+$activeTheme = getActiveTheme();
+$primaryColor = $activeTheme['primary_color'] ?? '#3b82f6';
+$lightPrimary = $primaryColor . '20'; // Add transparency
+$hoverBgColor = adjustBrightness($primaryColor, 20); // Lighter shade for hover
+?>
+<section class="py-20 relative overflow-hidden" style="background: linear-gradient(135deg, <?php echo $primaryColor; ?> 0%, <?php echo adjustBrightness($primaryColor, -20); ?> 50%, <?php echo adjustBrightness($primaryColor, -40); ?> 100%);">
     <div class="absolute inset-0 opacity-10">
         <div class="absolute top-0 left-0 w-40 h-40 bg-white rounded-full mix-blend-multiply filter blur-xl animate-blob"></div>
         <div class="absolute top-0 right-0 w-40 h-40 bg-white rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-2000"></div>
@@ -238,16 +244,16 @@ include 'includes/header.php';
     
     <div class="max-w-4xl mx-auto px-4 text-center relative z-10">
         <h2 class="font-bricolage font-bold text-4xl md:text-5xl text-white mb-6">
-            <i class="bi bi-lightning-fill text-yellow-300 animate-pulse"></i> Ready to Order?
+            <i class="bi bi-lightning-fill animate-pulse" style="color: <?php echo adjustBrightness($primaryColor, 40); ?>;"></i> Ready to Order?
         </h2>
-        <p class="text-xl text-blue-50 mb-8 max-w-2xl mx-auto">
+        <p class="text-xl text-white mb-8 max-w-2xl mx-auto" style="opacity: 0.95;">
             Join thousands of happy customers enjoying delicious food delivered fresh to your doorstep in minutes!
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="menu.php" class="px-10 py-4 bg-white text-primary rounded-full font-bold hover:bg-gray-100 transition-all hover:-translate-y-1 shadow-xl flex items-center justify-center gap-2">
+            <a href="menu.php" class="px-10 py-4 text-white rounded-full font-bold hover:shadow-lg transition-all hover:-translate-y-1 shadow-xl flex items-center justify-center gap-2" style="background-color: white; color: <?php echo $primaryColor; ?> !important;" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'">
                 <i class="bi bi-bag-plus-fill"></i> Order Now
             </a>
-            <a href="contact.php" class="px-10 py-4 border-2 border-white text-white rounded-full font-bold hover:bg-white hover:text-primary transition-all hover:-translate-y-1 flex items-center justify-center gap-2">
+            <a href="contact.php" class="px-10 py-4 border-2 text-white rounded-full font-bold hover:shadow-lg transition-all hover:-translate-y-1 flex items-center justify-center gap-2" style="border-color: white; color: white;" onmouseover="this.style.backgroundColor='white'; this.style.color='<?php echo $primaryColor; ?>'" onmouseout="this.style.backgroundColor='transparent'; this.style.color='white'">
                 <i class="bi bi-chat-left-dots"></i> Contact Us
             </a>
         </div>

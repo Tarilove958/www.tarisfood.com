@@ -1,0 +1,208 @@
+/* ===========================
+   THEME 1: DEFAULT THEME - MODERN BLUE & ORANGE
+   Modern, clean, professional food website
+   Primary: Blue (#3b82f6), Secondary: Orange (#f97316)
+   =========================== */
+
+:root {
+    --primary: #3b82f6;
+    --secondary: #f97316;
+    --dark: #1f2937;
+    --light: #f9fafb;
+    --accent: #8b5cf6;
+    --success: #10b981;
+    --danger: #ef4444;
+    --warning: #f59e0b;
+    --info: #06b6d4;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600;700&display=swap');
+
+/* ===== TYPOGRAPHY ===== */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    color: var(--dark);
+}
+
+body {
+    font-family: 'Outfit', sans-serif;
+    background-color: #f0f7ff;
+    color: var(--dark);
+}
+
+/* ===== GRADIENT TEXT ===== */
+.gradient-text {
+    background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* ===== TEXT VISIBILITY ===== */
+body {
+    color: #1f2937;
+}
+
+a {
+    color: #3b82f6 !important;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* ===== MENU PAGE STYLES ===== */
+.menu-title {
+    color: var(--primary) !important;
+}
+
+.menu-subtitle {
+    color: var(--primary) !important;
+}
+
+/* ===== BUTTONS ===== */
+.btn-primary {
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    color: #ffffff;
+    box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+}
+
+.btn-primary:hover {
+    box-shadow: 0 15px 35px rgba(59, 130, 246, 0.4);
+}
+
+.btn-secondary {
+    background: linear-gradient(135deg, #f97316, #ea580c);
+    color: #ffffff;
+    box-shadow: 0 10px 25px rgba(249, 115, 22, 0.3);
+}
+
+.btn-secondary:hover {
+    box-shadow: 0 15px 35px rgba(249, 115, 22, 0.4);
+}
+
+/* ===== HEADER STYLES ===== */
+header {
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    border-bottom: 3px solid #1e40af;
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.25);
+    color: #ffffff;
+}
+
+header h1, header h2, header h3, header h4, header h5, header h6 {
+    color: #ffffff !important;
+}
+
+header p, header span {
+    color: #ffffff !important;
+}
+
+header nav {
+    background: transparent;
+}
+
+header a, header .nav-link {
+    color: #ffffff !important;
+}
+
+header a:hover, header .nav-link:hover {
+    color: #fbbf24;
+}
+
+/* ===== CARDS ===== */
+.card {
+    background: #e8f2ff;
+    border: 1px solid #bfdbfe;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+}
+
+.card:hover {
+    box-shadow: 0 20px 25px rgba(59, 130, 246, 0.2);
+    border-color: #3b82f6;
+    background: #d6e9ff;
+}
+
+/* ===== PRODUCT CARDS ===== */
+.product-card {
+    background: #e8f2ff;
+    border: 1px solid #bfdbfe;
+    transition: all 0.3s ease;
+}
+
+.product-card:hover {
+    border-color: #3b82f6;
+    box-shadow: 0 20px 25px rgba(59, 130, 246, 0.2);
+    transform: translateY(-5px);
+    background: #d6e9ff;
+}
+
+/* ===== SECTIONS ===== */
+section {
+    background-color: #f0f7ff;
+}
+
+section p {
+    color: #000000 !important;
+}
+
+section h1, section h2, section h3, section h4, section h5, section h6 {
+    color: var(--dark) !important;
+}
+
+section.bg-light {
+    background-color: #e8f2ff;
+}
+
+section.bg-accent {
+    background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+    color: black;
+}
+
+/* ===== BADGES ===== */
+.badge-primary {
+    background-color: #dbeafe;
+    color: #1e40af;
+}
+
+.badge-secondary {
+    background-color: #fed7aa;
+    color: #92400e;
+}
+
+/* ===== LINKS ===== */
+a {
+    color: #3b82f6;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #1e40af;
+}
+
+/* ===== BORDERS & LINES ===== */
+hr {
+    border-color: #e5e7eb;
+}
+
+/* ===== SPECIAL ELEMENTS ===== */
+.success-badge {
+    background-color: #d1fae5;
+    color: #065f46;
+}
+
+.danger-badge {
+    background-color: #fee2e2;
+    color: #7f1d1d;
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes pulse-glow {
+    0%, 100% {
+        box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+    }
+    50% {
+        box-shadow: 0 0 40px rgba(59, 130, 246, 0.8);
+    }
+}

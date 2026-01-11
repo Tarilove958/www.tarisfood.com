@@ -1,26 +1,44 @@
 <?php
 require_once 'includes/config.php';
 
+// If user is already logged in, redirect appropriately
 if (isLoggedIn()) {
-    redirect('index.php');
+    if (isAdmin()) {
+        // Admin users go to admin dashboard
+        redirect('admin/index.php');
+    } else {
+        // Regular users go to user dashboard
+        redirect('user/index.php');
+    }
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = sanitize($_POST['email']);
     $password = $_POST['password'];
     
+    // Get user from database - check user_type to determine routing
     $stmt = $pdo->prepare("SELECT * FROM users WHERE email = ?");
     $stmt->execute([$email]);
     $user = $stmt->fetch();
     
     if ($user && password_verify($password, $user['password'])) {
         if ($user['status'] !== 'active') {
-            setFlashMessage('error', 'Account is suspended.');
+            setFlashMessage('error', 'Account is suspended. Please contact support.');
         } else {
+            // Set session variables for user
             $_SESSION['user_id'] = $user['user_id'];
             $_SESSION['user_name'] = $user['full_name'];
-            $_SESSION['user_type'] = $user['user_type'];
-            redirect($user['user_type'] === 'admin' ? 'admin/index.php' : 'index.php');
+            // CRITICAL: Get user_type from database - 'admin' or 'customer'
+            $_SESSION['user_type'] = $user['user_type'] ?: 'customer';
+            
+            // Redirect based on user type
+            if ($_SESSION['user_type'] === 'admin') {
+                // Admin redirects to admin dashboard
+                redirect('admin/index.php');
+            } else {
+                // Regular customers redirect to user dashboard
+                redirect('user/index.php');
+            }
         }
     } else {
         setFlashMessage('error', 'Invalid email or password.');
@@ -33,7 +51,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - <?php echo SITE_NAME; ?></title>
-    <link rel="icon" type="image/png" href="assets/images/logo.png">
+    
+    <!-- Favicon - Multiple formats for best browser compatibility -->
+    <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+    <link rel="icon" type="image/png" href="assets/images/favicon.png">
+    <link rel="apple-touch-icon" href="assets/images/favicon.svg">
+    <meta name="theme-color" content="#FF6B35">
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="assets/css/style.css">
 </head>

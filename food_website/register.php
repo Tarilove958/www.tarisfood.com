@@ -18,8 +18,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($check->rowCount() > 0) {
         setFlashMessage('error', 'Email already registered.');
     } else {
-        $stmt = $pdo->prepare("INSERT INTO users (full_name, email, password, phone) VALUES (?, ?, ?, ?)");
-        if ($stmt->execute([$name, $email, $password, $phone])) {
+        $stmt = $pdo->prepare("INSERT INTO users (full_name, email, password, phone, user_type) VALUES (?, ?, ?, ?, ?)");
+        if ($stmt->execute([$name, $email, $password, $phone, 'customer'])) {
             setFlashMessage('success', 'Registration successful! Please login.');
             redirect('login.php');
         } else {
@@ -34,6 +34,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register - <?php echo SITE_NAME; ?></title>
+    
+    <!-- Favicon - Multiple formats for best browser compatibility -->
+    <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+    <link rel="icon" type="image/png" href="assets/images/favicon.png">
+    <link rel="apple-touch-icon" href="assets/images/favicon.svg">
+    <meta name="theme-color" content="#FF6B35">
+    
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-50 flex items-center justify-center min-h-screen py-10">

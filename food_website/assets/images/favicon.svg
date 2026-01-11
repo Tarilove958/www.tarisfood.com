@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <linearGradient id="foodGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FF6B35;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#F7931E;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FDB833;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="plateGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFFFFF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#F5F5F5;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background Circle -->
+  <circle cx="100" cy="100" r="100" fill="url(#plateGradient)" />
+  
+  <!-- Decorative Ring -->
+  <circle cx="100" cy="100" r="95" fill="none" stroke="url(#foodGradient)" stroke-width="3" />
+  
+  <!-- Plate -->
+  <circle cx="100" cy="100" r="70" fill="white" stroke="url(#foodGradient)" stroke-width="2.5" />
+  
+  <!-- Plate rim detail -->
+  <circle cx="100" cy="100" r="68" fill="none" stroke="#FFE5CC" stroke-width="1.5" opacity="0.6" />
+  
+  <!-- Fork on left -->
+  <g id="fork">
+    <!-- Handle -->
+    <rect x="30" y="75" width="8" height="50" rx="4" fill="url(#foodGradient)" />
+    <!-- Prongs -->
+    <rect x="20" y="35" width="4" height="50" rx="2" fill="url(#foodGradient)" />
+    <rect x="32" y="35" width="4" height="50" rx="2" fill="url(#foodGradient)" />
+    <rect x="44" y="35" width="4" height="50" rx="2" fill="url(#foodGradient)" />
+    <!-- Prong connectors -->
+    <rect x="20" y="33" width="28" height="3" rx="1.5" fill="url(#foodGradient)" />
+  </g>
+  
+  <!-- Spoon on right -->
+  <g id="spoon" transform="scale(-1, 1) translate(-200, 0)">
+    <!-- Handle -->
+    <rect x="30" y="75" width="8" height="50" rx="4" fill="url(#foodGradient)" />
+    <!-- Bowl -->
+    <ellipse cx="37" cy="25" rx="14" ry="18" fill="url(#foodGradient)" />
+    <!-- Bowl shine -->
+    <ellipse cx="34" cy="22" rx="8" ry="10" fill="#FF8C42" opacity="0.7" />
+  </g>
+  
+  <!-- Central food element - stylized plate of food -->
+  <g id="food">
+    <!-- Base food pile -->
+    <ellipse cx="100" cy="105" rx="25" ry="20" fill="#FF6B35" opacity="0.9" />
+    <!-- Top accent -->
+    <ellipse cx="100" cy="98" rx="22" ry="15" fill="#FF8C42" />
+    <!-- Highlight -->
+    <ellipse cx="97" cy="95" rx="12" ry="10" fill="#FDB833" opacity="0.8" />
+  </g>
+  
+  <!-- Decorative dots around -->
+  <circle cx="100" cy="40" r="2.5" fill="url(#foodGradient)" opacity="0.6" />
+  <circle cx="145" cy="100" r="2.5" fill="url(#foodGradient)" opacity="0.6" />
+  <circle cx="100" cy="160" r="2.5" fill="url(#foodGradient)" opacity="0.6" />
+  <circle cx="55" cy="100" r="2.5" fill="url(#foodGradient)" opacity="0.6" />
+</svg>

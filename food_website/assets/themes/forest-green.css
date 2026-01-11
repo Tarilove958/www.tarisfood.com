@@ -1,0 +1,235 @@
+/* ===========================
+   THEME 4: FOREST GREEN - NATURAL & ORGANIC
+   Earthy natural colors, organic design
+   Primary: Green (#27AE60), Secondary: Purple (#8E44AD)
+   =========================== */
+
+:root {
+    --primary: #27AE60;
+    --secondary: #8E44AD;
+    --dark: #34495E;
+    --light: #FAFAFA;
+    --accent: #1E8449;
+    --success: #27AE60;
+    --danger: #E74C3C;
+    --warning: #F39C12;
+    --info: #8E44AD;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800&family=Merriweather:wght@400;700&display=swap');
+
+/* ===== TYPOGRAPHY ===== */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Merriweather', serif;
+    color: #34495E;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+}
+
+body {
+    font-family: 'Raleway', sans-serif;
+    background-color: #E8F5E9;
+    color: #34495E;
+    line-height: 1.65;
+    font-weight: 400;
+}
+
+/* ===== GRADIENT TEXT ===== */
+.gradient-text {
+    background: linear-gradient(135deg, #27AE60, #8E44AD);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 800;
+}
+
+/* ===== TEXT VISIBILITY ===== */
+body {
+    color: #1f2937;
+}
+
+a {
+    color: #27AE60 !important;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* ===== MENU PAGE STYLES ===== */
+.menu-title {
+    color: #27AE60 !important;
+}
+
+.menu-subtitle {
+    color: #27AE60 !important;
+}
+
+/* ===== BUTTONS ===== */
+.btn-primary {
+    background: linear-gradient(135deg, #27AE60, #1E8449);
+    color: #ffffff;
+    box-shadow: 0 10px 25px rgba(39, 174, 96, 0.25);
+    border-radius: 6px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.btn-primary:hover {
+    box-shadow: 0 15px 35px rgba(39, 174, 96, 0.35);
+    transform: translateY(-3px);
+}
+
+.btn-secondary {
+    background: linear-gradient(135deg, #8E44AD, #7D3C98);
+    color: #ffffff;
+    box-shadow: 0 10px 25px rgba(142, 68, 173, 0.25);
+    border-radius: 6px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.btn-secondary:hover {
+    box-shadow: 0 15px 35px rgba(142, 68, 173, 0.35);
+    transform: translateY(-3px);
+}
+
+/* ===== HEADER STYLES ===== */
+header {
+    background: linear-gradient(135deg, #27AE60, #1E8449);
+    border-bottom: 2px solid #155937;
+    box-shadow: 0 4px 12px rgba(39, 174, 96, 0.25);
+    color: #ffffff;
+}
+
+header h1, header h2, header h3, header h4, header h5, header h6 {
+    color: #ffffff !important;
+}
+
+header p, header span {
+    color: #ffffff !important;
+}
+
+header a, header .nav-link {
+    color: #ffffff !important;
+}
+
+header a:hover, header .nav-link:hover {
+    color: #C8E6C9;
+}
+
+header nav {
+    background: transparent;
+}
+
+/* ===== CARDS ===== */
+.card {
+    background: #D5E8D4;
+    border: 1px solid #B0D4AC;
+    box-shadow: 0 4px 12px rgba(39, 174, 96, 0.08);
+    border-radius: 10px;
+}
+
+.card:hover {
+    box-shadow: 0 16px 32px rgba(39, 174, 96, 0.15);
+    border-color: #27AE60;
+    transform: translateY(-6px);
+    background: #C8E6C9;
+}
+
+/* ===== PRODUCT CARDS ===== */
+.product-card {
+    border: 1px solid #B0D4AC;
+    background: #D5E8D4;
+    border-radius: 10px;
+    transition: all 0.4s ease;
+    box-shadow: 0 4px 12px rgba(39, 174, 96, 0.08);
+}
+
+.product-card:hover {
+    border-color: #27AE60;
+    box-shadow: 0 16px 32px rgba(39, 174, 96, 0.15);
+    transform: translateY(-6px);
+}
+
+/* ===== SECTIONS ===== */
+section {
+    background-color: #E8F5E9;
+}
+
+section p {
+    color: #000000 !important;
+}
+
+section.bg-light {
+    background: linear-gradient(135deg, #D5E8D4, #C8E6C9);
+}
+
+section.bg-accent {
+    background: linear-gradient(135deg, #27AE60, #1E8449);
+    color: black;
+}
+
+/* ===== BADGES ===== */
+.badge-primary {
+    background-color: #C8E6C9;
+    color: #1B5E20;
+    border: 1px solid #81C784;
+}
+
+.badge-secondary {
+    background-color: #E1BEE7;
+    color: #4A148C;
+    border: 1px solid #BA68C8;
+}
+
+/* ===== LINKS ===== */
+a {
+    color: #27AE60;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+a:hover {
+    color: #1E8449;
+    text-decoration: underline;
+}
+
+/* ===== SPECIAL ELEMENTS ===== */
+.success-badge {
+    background-color: #C8E6C9;
+    color: #1B5E20;
+}
+
+.danger-badge {
+    background-color: #FFCDD2;
+    color: #B71C1C;
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes nature-glow {
+    0%, 100% {
+        box-shadow: 0 0 20px rgba(39, 174, 96, 0.3);
+    }
+    50% {
+        box-shadow: 0 0 35px rgba(142, 68, 173, 0.35);
+    }
+}
+
+/* ===== LIST ITEMS ===== */
+ul li {
+    color: #000000;
+}
+
+/* ===== LEAF DECORATION ===== */
+.leaf-accent {
+    position: relative;
+}
+
+.leaf-accent::before {
+    content: '🍃';
+    position: absolute;
+    opacity: 0.1;
+    font-size: 5rem;
+}

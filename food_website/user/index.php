@@ -2,9 +2,16 @@
 session_start();
 require_once '../includes/config.php';
 
-// Check if user is logged in
+// Access Control: Check if user is logged in
 if (!isLoggedIn()) {
     header('Location: ../login.php?redirect=user/index.php');
+    exit;
+}
+
+// Access Control: Check if user is NOT an admin (only regular users)
+if (isAdmin()) {
+    // If user is admin, redirect to admin dashboard instead
+    header('Location: ../admin/index.php');
     exit;
 }
 
@@ -35,13 +42,56 @@ $total_spent = $spend_stats['total_spent'] ?? 0;
 $stmt = $pdo->prepare("SELECT COUNT(*) as total_items FROM order_items oi JOIN orders o ON oi.order_id = o.order_id WHERE o.user_id = ?");
 $stmt->execute([$user_id]);
 $items_stats = $stmt->fetch();
+
+// Get active theme for dynamic colors
+$activeTheme = getActiveTheme();
+$primaryColor = $activeTheme['primary_color'] ?? '#3b82f6';
+$secondaryColor = $activeTheme['secondary_color'] ?? '#f97316';
+$accentColor = $activeTheme['accent_color'] ?? '#8b5cf6';
+$lightColor = $activeTheme['light_color'] ?? '#f9fafb';
+
+// Add inline style for theme colors
 ?>
 
+<style>
+    :root {
+        --primary: <?php echo $primaryColor; ?>;
+        --secondary: <?php echo $secondaryColor; ?>;
+        --accent: <?php echo $accentColor; ?>;
+        --light: <?php echo $lightColor; ?>;
+    }
+    
+    .dashboard-card {
+        background-color: white;
+        border: 1px solid #e5e7eb;
+    }
+    
+    .icon-primary {
+        background-color: <?php echo adjustBrightness($primaryColor, 70); ?>;
+        color: <?php echo $primaryColor; ?>;
+    }
+    
+    .icon-secondary {
+        background-color: <?php echo adjustBrightness($secondaryColor, 70); ?>;
+        color: <?php echo $secondaryColor; ?>;
+    }
+    
+    .icon-accent {
+        background-color: <?php echo adjustBrightness($accentColor, 70); ?>;
+        color: <?php echo $accentColor; ?>;
+    }
+    
+    .status-badge {
+        background-color: <?php echo adjustBrightness($primaryColor, 80); ?>;
+        color: <?php echo $primaryColor; ?>;
+    }
+</style>
+
 <!-- Dashboard Header -->
-<div class="bg-gradient-to-r from-primary to-blue-600 text-white py-12">
+<div class="text-white py-12" style="background: linear-gradient(135deg, <?php echo $primaryColor; ?> 0%, <?php echo adjustBrightness($primaryColor, -20); ?> 100%);">
     <div class="max-w-6xl mx-auto px-4">
         <h1 class="font-bricolage font-bold text-4xl mb-2">Welcome, <?php echo htmlspecialchars($user['full_name']); ?>! 👋</h1>
-        <p class="text-blue-100">Manage your profile, orders, and preferences</p>
+        <p class="opacity-90">Manage your profile, orders, and preferences</p>
     </div>
 </div>
 
@@ -50,54 +100,54 @@ $items_stats = $stmt->fetch();
     <!-- Stats Cards -->
     <div class="grid md:grid-cols-4 gap-6 mb-12">
         <!-- Total Orders -->
-        <div class="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm hover:shadow-md transition-all">
+        <div class="dashboard-card rounded-2xl p-6 shadow-sm hover:shadow-md transition-all">
             <div class="flex items-center justify-between">
                 <div>
                     <p class="text-gray-500 text-sm font-semibold mb-2">Total Orders</p>
                     <p class="font-bricolage font-bold text-3xl text-dark"><?php echo $order_stats['total_orders']; ?></p>
                 </div>
-                <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
-                    <i class="bi bi-bag-check text-blue-600 text-xl"></i>
+                <div class="w-12 h-12 icon-primary rounded-full flex items-center justify-center">
+                    <i class="bi bi-bag-check text-xl"></i>
                 </div>
             </div>
             <p class="text-xs text-gray-400 mt-2">Lifetime orders</p>
         </div>
 
         <!-- Total Spent -->
-        <div class="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm hover:shadow-md transition-all">
+        <div class="dashboard-card rounded-2xl p-6 shadow-sm hover:shadow-md transition-all">
             <div class="flex items-center justify-between">
                 <div>
                     <p class="text-gray-500 text-sm font-semibold mb-2">Total Spent</p>
                     <p class="font-bricolage font-bold text-3xl text-dark"><?php echo formatPrice($total_spent); ?></p>
                 </div>
-                <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
-                    <i class="bi bi-cash-coin text-green-600 text-xl"></i>
+                <div class="w-12 h-12 icon-secondary rounded-full flex items-center justify-center">
+                    <i class="bi bi-cash-coin text-xl"></i>
                 </div>
             </div>
             <p class="text-xs text-gray-400 mt-2">Completed orders only</p>
         </div>
 
         <!-- Items Ordered -->
-        <div class="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm hover:shadow-md transition-all">
+        <div class="dashboard-card rounded-2xl p-6 shadow-sm hover:shadow-md transition-all">
             <div class="flex items-center justify-between">
                 <div>
                     <p class="text-gray-500 text-sm font-semibold mb-2">Items Ordered</p>
                     <p class="font-bricolage font-bold text-3xl text-dark"><?php echo $items_stats['total_items']; ?></p>
                 </div>
-                <div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center">
-                    <i class="bi bi-basket text-orange-600 text-xl"></i>
+                <div class="w-12 h-12 icon-accent rounded-full flex items-center justify-center">
+                    <i class="bi bi-basket text-xl"></i>
                 </div>
             </div>
             <p class="text-xs text-gray-400 mt-2">Total items purchased</p>
         </div>
 
         <!-- Account Status -->
-        <div class="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm hover:shadow-md transition-all">
+        <div class="dashboard-card rounded-2xl p-6 shadow-sm hover:shadow-md transition-all">
             <div class="flex items-center justify-between">
                 <div>
                     <p class="text-gray-500 text-sm font-semibold mb-2">Account Status</p>
                     <p class="font-bricolage font-bold text-lg text-dark">
-                        <span class="inline-block px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs font-bold">Active</span>
+                        <span class="inline-block px-3 py-1 status-badge rounded-full text-xs font-bold">Active</span>
                     </p>
                 </div>
                 <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center">
@@ -125,8 +175,8 @@ $items_stats = $stmt->fetch();
                         <?php foreach ($recent_orders as $order): ?>
                         <div class="flex items-center justify-between p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors">
                             <div class="flex items-center gap-4 flex-1">
-                                <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-                                    <i class="bi bi-bag text-blue-600"></i>
+                                <div class="icon-primary w-12 h-12 rounded-lg flex items-center justify-center">
+                                    <i class="bi bi-bag"></i>
                                 </div>
                                 <div>
                                     <p class="font-semibold text-dark"><?php echo 'Order #' . $order['order_id']; ?></p>
@@ -135,12 +185,12 @@ $items_stats = $stmt->fetch();
                             </div>
                             <div class="text-right">
                                 <p class="font-bold text-dark"><?php echo formatPrice($order['total_amount']); ?></p>
-                                <span class="inline-block text-xs font-semibold px-2 py-1 rounded-full 
-                                    <?php 
-                                    if ($order['order_status'] == 'delivered') echo 'bg-green-100 text-green-700';
-                                    elseif ($order['order_status'] == 'pending') echo 'bg-yellow-100 text-yellow-700';
-                                    elseif ($order['order_status'] == 'cancelled') echo 'bg-red-100 text-red-700';
-                                    else echo 'bg-blue-100 text-blue-700';
+                                <span class="inline-block text-xs font-semibold px-2 py-1 rounded-full text-white"
+                                    style="<?php 
+                                    if ($order['order_status'] == 'delivered') echo 'background-color: #10b981;';
+                                    elseif ($order['order_status'] == 'pending') echo 'background-color: #f59e0b;';
+                                    elseif ($order['order_status'] == 'cancelled') echo 'background-color: #ef4444;';
+                                    else echo 'background-color: ' . $primaryColor . ';';
                                     ?>">
                                     <?php echo ucfirst(str_replace('_', ' ', $order['order_status'])); ?>
                                 </span>
@@ -152,7 +202,7 @@ $items_stats = $stmt->fetch();
                     <div class="text-center py-8">
                         <i class="bi bi-inbox text-4xl text-gray-300 mb-2"></i>
                         <p class="text-gray-500">No orders yet</p>
-                        <a href="../menu.php" class="text-primary text-sm font-semibold mt-2 inline-block hover:underline">Start ordering now →</a>
+                        <a href="../menu.php" class="text-sm font-semibold mt-2 inline-block hover:underline" style="color: <?php echo $primaryColor; ?>;">Start ordering now →</a>
                     </div>
                 <?php endif; ?>
             </div>
@@ -163,9 +213,9 @@ $items_stats = $stmt->fetch();
             <div class="bg-white rounded-2xl p-6 border border-gray-100">
                 <h3 class="font-bricolage font-bold text-xl text-dark mb-4">Quick Actions</h3>
                 <div class="space-y-3">
-                    <a href="profile.php" class="flex items-center gap-3 p-4 rounded-lg bg-blue-50 hover:bg-blue-100 transition-colors group">
-                        <div class="w-10 h-10 bg-blue-200 rounded-lg flex items-center justify-center group-hover:bg-blue-300">
-                            <i class="bi bi-person text-blue-600"></i>
+                    <a href="profile.php" class="flex items-center gap-3 p-4 rounded-lg transition-colors group" style="background-color: <?php echo adjustBrightness($primaryColor, 85); ?>; hover:background-color: <?php echo adjustBrightness($primaryColor, 75); ?>;">
+                        <div class="w-10 h-10 rounded-lg flex items-center justify-center group-hover:opacity-80" style="background-color: <?php echo adjustBrightness($primaryColor, 70); ?>; color: <?php echo $primaryColor; ?>;">
+                            <i class="bi bi-person"></i>
                         </div>
                         <div>
                             <p class="font-semibold text-dark text-sm">Edit Profile</p>
@@ -173,8 +223,9 @@ $items_stats = $stmt->fetch();
                         </div>
                     </a>
 
-                    <a href="orders.php" class="flex items-center gap-3 p-4 rounded-lg bg-orange-50 hover:bg-orange-100 transition-colors group">
-                        <div class="w-10 h-10 bg-orange-200 rounded-lg flex items-center justify-center group-hover:bg-orange-300">
+                    <a href="orders.php" class="flex items-center gap-3 p-4 rounded-lg transition-colors group" style="background-color: <?php echo adjustBrightness($secondaryColor, 85); ?>; hover:background-color: <?php echo adjustBrightness($secondaryColor, 75); ?>;">
+                        <div class="w-10 h-10 rounded-lg flex items-center justify-center group-hover:opacity-80" style="background-color: <?php echo adjustBrightness($secondaryColor, 70); ?>; color: <?php echo $secondaryColor; ?>;">
+
                             <i class="bi bi-bag-check text-orange-600"></i>
                         </div>
                         <div>
@@ -183,9 +234,9 @@ $items_stats = $stmt->fetch();
                         </div>
                     </a>
 
-                    <a href="change-password.php" class="flex items-center gap-3 p-4 rounded-lg bg-green-50 hover:bg-green-100 transition-colors group">
-                        <div class="w-10 h-10 bg-green-200 rounded-lg flex items-center justify-center group-hover:bg-green-300">
-                            <i class="bi bi-shield-lock text-green-600"></i>
+                    <a href="change-password.php" class="flex items-center gap-3 p-4 rounded-lg transition-colors group" style="background-color: <?php echo adjustBrightness($accentColor, 85); ?>; hover:background-color: <?php echo adjustBrightness($accentColor, 75); ?>;">
+                        <div class="w-10 h-10 rounded-lg flex items-center justify-center group-hover:opacity-80" style="background-color: <?php echo adjustBrightness($accentColor, 70); ?>; color: <?php echo $accentColor; ?>;">
+                            <i class="bi bi-shield-lock"></i>
                         </div>
                         <div>
                             <p class="font-semibold text-dark text-sm">Change Password</p>
@@ -193,9 +244,10 @@ $items_stats = $stmt->fetch();
                         </div>
                     </a>
 
-                    <a href="../menu.php" class="flex items-center gap-3 p-4 rounded-lg bg-purple-50 hover:bg-purple-100 transition-colors group">
-                        <div class="w-10 h-10 bg-purple-200 rounded-lg flex items-center justify-center group-hover:bg-purple-300">
-                            <i class="bi bi-basket text-purple-600"></i>
+                    <a href="../menu.php" class="flex items-center gap-3 p-4 rounded-lg transition-colors group" style="background-color: <?php echo adjustBrightness($primaryColor, 85); ?>; hover:background-color: <?php echo adjustBrightness($primaryColor, 75); ?>;">
+
+                        <div class="w-10 h-10 rounded-lg flex items-center justify-center group-hover:opacity-80" style="background-color: <?php echo adjustBrightness($primaryColor, 70); ?>; color: <?php echo $primaryColor; ?>;">
+                            <i class="bi bi-basket"></i>
                         </div>
                         <div>
                             <p class="font-semibold text-dark text-sm">Order Food</p>
